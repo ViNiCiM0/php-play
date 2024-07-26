@@ -3,7 +3,9 @@
 $dbPath = __DIR__ . '/banco.sqlite';
 $pdo = new PDO("sqlite:$dbPath");
 
-$id = $_GET['id'];
+//$id = $_GET['id'];
+$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+
 $sql = 'DELETE FROM videos WHERE id = ?';
 $stmt = $pdo->prepare($sql);
 $stmt->bindValue(1, $id);
